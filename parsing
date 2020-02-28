@@ -1,0 +1,12 @@
+import os
+import pandas as pd
+
+directory = 'Reports/'
+output = open('output.json', 'w')
+
+#skips one line because 2 of the 3's top line is uneeded
+#Manually cut the first line out or another way?
+for f in os.listdir(directory) :
+    df = pd.read_excel(directory + f, skiprows= 1)
+    print(df.to_json(orient='records', lines=True), file=output)
+output.close()
